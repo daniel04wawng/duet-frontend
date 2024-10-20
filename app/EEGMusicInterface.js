@@ -5,10 +5,6 @@ import React, { useEffect, useRef } from 'react';
 const EEGMusicInterface = () => {
   const canvasRef = useRef(null);
 
-  // Placeholder values for excitement and relaxation
-  let excitement = 70; // Example value
-  let relaxation = 50; // Example value
-
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
@@ -78,13 +74,6 @@ const EEGMusicInterface = () => {
 
       ctx.fillStyle = 'rgba(255, 0, 0, 0.8)'; // Corresponding color for beta
       ctx.fillText(`Beta: ${waveData.beta.toFixed(2)}`, 10, 60);
-
-      // Draw excitement and relaxation values in the top right corner
-      ctx.fillStyle = 'rgba(255, 255, 0, 0.8)'; // Example color for excitement
-      ctx.fillText(`Excitement: ${excitement}`, canvas.width - 150, 30);
-
-      ctx.fillStyle = 'rgba(0, 255, 0, 0.8)'; // Example color for relaxation
-      ctx.fillText(`Relaxation: ${relaxation}`, canvas.width - 150, 60);
 
       animationFrameId = requestAnimationFrame(animate);
     };
