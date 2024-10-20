@@ -63,6 +63,14 @@ const EEGMusicInterface = () => {
       ctx.shadowColor = 'transparent';
     };
 
+    const drawText = (interpolatedAlpha, interpolatedBeta) => {
+      ctx.font = '16px Arial';
+      ctx.fillStyle = '#ffffff';
+      ctx.textAlign = 'left';
+      ctx.fillText(`Alpha: ${interpolatedAlpha.toFixed(2)}`, 10, 30);
+      ctx.fillText(`Beta: ${interpolatedBeta.toFixed(2)}`, 10, 60);
+    };
+
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
@@ -103,6 +111,9 @@ const EEGMusicInterface = () => {
       drawWave(canvas.height / 2, Math.min(350, (interpolatedBeta - 0.4) * 290), '#ffdc96', -offset);
 
       drawVisualizer(interpolatedAlpha, interpolatedBeta);
+
+      // Draw the text with interpolated values
+      drawText(interpolatedAlpha, interpolatedBeta);
 
       setOffset(offset + 0.2);
       setInterpolationProgress((prevProgress) => Math.min(prevProgress + 0.0075, 1));  // Smooth interpolation
